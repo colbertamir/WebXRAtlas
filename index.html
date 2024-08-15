@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no, 1.0">
   <title>Hello WebXR!</title>
 
   <!-- three.js -->
@@ -43,10 +43,22 @@ async function activateXR() {
     scene.add(reticle);
   });
 
-  // Load flower model
-  let flower;
-  loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf", function(gltf) {
-    flower = gltf.scene;
+  // Load logo model
+  let logo;
+  loader.load("models/logo.gltf", function(gltf) {
+    logo = gltf.scene;
+  });
+
+  // Load github model
+  let github;
+  loader.load("models/github.gltf", function(gltf) {
+    github = gltf.scene;
+  });
+
+  // Load linkedin model
+  let linkedin;
+  loader.load("models/linkedin.gltf", function(gltf) {
+    linkedin = gltf.scene;
   });
 
   // Set up the WebGLRenderer, which handles rendering to the session's base layer.
@@ -81,10 +93,23 @@ async function activateXR() {
 
   // Handle object placement on user interaction
   session.addEventListener("select", (event) => {
-    if (flower && reticle.visible) {
-      const clone = flower.clone();
-      clone.position.copy(reticle.position);
-      scene.add(clone);
+    if (reticle.visible) {
+      // Clone and position the models at the reticle position
+      if (logo && github && linkedin) {
+        const logoClone = logo.clone();
+        logoClone.position.copy(reticle.position);
+        logoClone.position.x -= 0.3; // Offset for horizontal alignment
+        scene.add(logoClone);
+        
+        const githubClone = github.clone();
+        githubClone.position.copy(reticle.position);
+        scene.add(githubClone);
+
+        const linkedinClone = linkedin.clone();
+        linkedinClone.position.copy(reticle.position);
+        linkedinClone.position.x += 0.3; // Offset for horizontal alignment
+        scene.add(linkedinClone);
+      }
     }
   });
 
