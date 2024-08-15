@@ -45,19 +45,19 @@ async function activateXR() {
 
   // Load logo model from local server
   let logo;
-  loader.load("https://cdn.glitch.global/ee521acd-aa0e-4b41-a1e4-d176b4bd128d/logo.glb?v=1723744921850", function(gltf) {
+  loader.load("https://cdn.glitch.global/ee521acd-aa0e-4b41-a1e4-d176b4bd128d/logo.glb?v=1723744816978", function(gltf) {
     logo = gltf.scene;
   });
 
   // Load GitHub model from local server
   let github;
-  loader.load("https://cdn.glitch.global/ee521acd-aa0e-4b41-a1e4-d176b4bd128d/github.glb?v=1723744885763", function(gltf) {
+  loader.load("https://raw.githubusercontent.com/colbertamir/WebXRAtlas/main/models/github.glb", function(gltf) {
     github = gltf.scene;
   });
 
   // Load LinkedIn model from local server
   let linkedin;
-  loader.load("https://cdn.glitch.global/ee521acd-aa0e-4b41-a1e4-d176b4bd128d/linkedin.glb?v=1723744969601", function(gltf) {
+  loader.load("http://localhost:8000/models/linkedin.glb", function(gltf) {
     linkedin = gltf.scene;
   });
 
