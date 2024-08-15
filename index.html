@@ -45,7 +45,7 @@ async function activateXR() {
 
   // Load logo model from local server
   let logo;
-  loader.load("https://cdn.glitch.global/ee521acd-aa0e-4b41-a1e4-d176b4bd128d/logo.glb?v=1723744816978", function(gltf) {
+  loader.load("https://raw.githubusercontent.com/colbertamir/WebXRAtlas/main/models/logo.glb", function(gltf) {
     logo = gltf.scene;
   });
 
@@ -57,7 +57,7 @@ async function activateXR() {
 
   // Load LinkedIn model from local server
   let linkedin;
-  loader.load("http://localhost:8000/models/linkedin.glb", function(gltf) {
+  loader.load("https://raw.githubusercontent.com/colbertamir/WebXRAtlas/main/models/linkedin.glb", function(gltf) {
     linkedin = gltf.scene;
   });
 
@@ -98,7 +98,7 @@ async function activateXR() {
       if (logo && github && linkedin) {
         const logoClone = logo.clone();
         logoClone.position.copy(reticle.position);
-        logoClone.position.x -= 0.3; // Offset for horizontal alignment
+        logoClone.position.y += 0.3; // Offset for vertical alignment
         scene.add(logoClone);
         
         const githubClone = github.clone();
@@ -107,7 +107,7 @@ async function activateXR() {
 
         const linkedinClone = linkedin.clone();
         linkedinClone.position.copy(reticle.position);
-        linkedinClone.position.x += 0.3; // Offset for horizontal alignment
+        linkedinClone.position.y -= 0.3; // Offset for vertical alignment
         scene.add(linkedinClone);
       }
     }
