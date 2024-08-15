@@ -98,16 +98,19 @@ async function activateXR() {
       if (logo && github && linkedin) {
         const logoClone = logo.clone();
         logoClone.position.copy(reticle.position);
-        logoClone.position.y += 0.3; // Offset for vertical alignment
+        logoClone.position.x -= 0.3; // Offset for horizontal alignment
+        logoClone.rotation.y = Math.PI / 2; // Rotate 90 degrees
         scene.add(logoClone);
         
         const githubClone = github.clone();
         githubClone.position.copy(reticle.position);
+        githubClone.rotation.y = Math.PI / 2; // Rotate 90 degrees
         scene.add(githubClone);
 
         const linkedinClone = linkedin.clone();
         linkedinClone.position.copy(reticle.position);
-        linkedinClone.position.y -= 0.3; // Offset for vertical alignment
+        linkedinClone.position.x += 0.3; // Offset for horizontal alignment
+        linkedinClone.rotation.y = Math.PI / 2; // Rotate 90 degrees
         scene.add(linkedinClone);
       }
     }
