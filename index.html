@@ -96,23 +96,24 @@ async function activateXR() {
     if (reticle.visible) {
       // Clone and position the models at the reticle position
       if (logo && github && linkedin) {
-        const spacing = 0.5; // Distance between models
+        const spacing = 0.3; // Distance between models
 
+        // Create vertical alignment for the models
         const logoClone = logo.clone();
         logoClone.position.copy(reticle.position);
-        logoClone.position.x -= spacing; // Position to the left
-        logoClone.rotation.set(0, 0, 0); // Upright orientation
+        logoClone.position.y += spacing; // Above the center
+        logoClone.rotation.set(0, 0, 0); // No rotation
         scene.add(logoClone);
-        
+
         const githubClone = github.clone();
         githubClone.position.copy(reticle.position);
-        githubClone.rotation.set(0, 0, 0); // Upright orientation
+        githubClone.rotation.set(0, 0, 0); // No rotation
         scene.add(githubClone);
 
         const linkedinClone = linkedin.clone();
         linkedinClone.position.copy(reticle.position);
-        linkedinClone.position.x += spacing; // Position to the right
-        linkedinClone.rotation.set(0, 0, 0); // Upright orientation
+        linkedinClone.position.y -= spacing; // Below the center
+        linkedinClone.rotation.set(0, 0, 0); // No rotation
         scene.add(linkedinClone);
       }
     }
