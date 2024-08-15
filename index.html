@@ -94,23 +94,27 @@ async function activateXR() {
   // Handle object placement on user interaction
   session.addEventListener("select", (event) => {
     if (reticle.visible) {
+      // Calculate the direction from each model to the camera and rotate the models towards the camera
+      const lookAtPosition = new THREE.Vector3();
+      camera.getWorldPosition(lookAtPosition);
+
       // Clone and position the models at the reticle position
       if (logo && github && linkedin) {
         const logoClone = logo.clone();
         logoClone.position.copy(reticle.position);
         logoClone.position.x -= 0.3; // Offset for horizontal alignment
-        logoClone.rotation.y = Math.PI / 2; // Rotate 90 degrees
+        logoClone.lookAt(lookAtPosition); // Rotate towards the camera
         scene.add(logoClone);
         
         const githubClone = github.clone();
         githubClone.position.copy(reticle.position);
-        githubClone.rotation.y = Math.PI / 2; // Rotate 90 degrees
+        githubClone.lookAt(lookAtPosition); // Rotate towards the camera
         scene.add(githubClone);
 
         const linkedinClone = linkedin.clone();
         linkedinClone.position.copy(reticle.position);
         linkedinClone.position.x += 0.3; // Offset for horizontal alignment
-        linkedinClone.rotation.y = Math.PI / 2; // Rotate 90 degrees
+        linkedinClone.lookAt(lookAtPosition); // Rotate towards the camera
         scene.add(linkedinClone);
       }
     }
